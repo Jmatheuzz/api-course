@@ -32,7 +32,7 @@ public class OpenApiConfig {
         public GroupedOpenApi publicApi() {
                 return GroupedOpenApi.builder()
                         .group("v1")
-                        .packagesToScan("com.tcc.api.controllers")
+                        .packagesToScan("com.cursos.api.controllers")
                         .build();
         }
         @Bean
