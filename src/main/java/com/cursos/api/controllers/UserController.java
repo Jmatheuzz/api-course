@@ -1,6 +1,8 @@
 package com.cursos.api.controllers;
 
+import com.cursos.api.domain.dto.request.RequestAddCreator;
 import com.cursos.api.domain.dto.request.RequestUpdateUserDTO;
+import com.cursos.api.domain.dto.response.ResponseAddCreator;
 import com.cursos.api.domain.dto.response.ResponsePublicUserDTO;
 import com.cursos.api.domain.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +33,13 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<ResponsePublicUserDTO> updateUser(@PathVariable Long id, @RequestBody RequestUpdateUserDTO userDetails) {
         ResponsePublicUserDTO response = service.updateUser(id, userDetails);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @Operation(description = "Serviço para ativar função de criador de cursos")
+    @PutMapping("/active-creator/{id}")
+    public ResponseEntity<ResponseAddCreator> creatorActive(@PathVariable Long id, @RequestBody RequestAddCreator data){
+        ResponseAddCreator response = service.addCreator(id, data);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
