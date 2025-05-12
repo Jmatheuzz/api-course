@@ -8,6 +8,7 @@ import com.cursos.api.domain.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class UserController {
 
     @Operation(description = "Serviço para ativar função de criador de cursos")
     @PutMapping("/active-creator/{id}")
-    public ResponseEntity<ResponseAddCreator> creatorActive(@PathVariable Long id, @RequestBody RequestAddCreator data){
+    public ResponseEntity<ResponseAddCreator> creatorActive(@PathVariable Long id, @RequestBody RequestAddCreator data) throws BadRequestException {
         ResponseAddCreator response = service.addCreator(id, data);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
